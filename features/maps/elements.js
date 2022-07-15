@@ -1,4 +1,4 @@
-const selectors = {};
+const selectors = {'pin input': 'PinInputView'};
 
 // Return either pre-defined selector or the key itself - maybe it's defined in element repo
 module.exports = selector => {
