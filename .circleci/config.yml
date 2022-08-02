@@ -15,9 +15,6 @@ jobs:
     steps:
       - checkout
       - run: node --version
-      - run:
-          name: update-npm
-          command: "sudo npm install -g npm@latest"
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json"}}
       - run:
@@ -28,8 +25,17 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: test
-          command: yarn test
+          name: install-suitest-api
+          command: yarn add suitest-js-api
+      - run:
+          name: fetch-cucumberstudio-tests
+          command: hiptest-publisher -c my-cs.conf
+      - run:
+          name: run-tests 
+          command: npm run start
+      - run:
+          name: view_report 
+          command: npm run report:html
       - store_artifacts:
           path: test-results.xml
           prefix: tests
@@ -37,4 +43,4 @@ jobs:
           path: coverage
           prefix: coverage
       - store_test_results:
-          path: test-results.xml
+          path: report/cucumber_report.html
