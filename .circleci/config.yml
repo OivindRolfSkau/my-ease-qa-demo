@@ -28,6 +28,9 @@ jobs:
           name: install-suitest-api
           command: yarn add suitest-js-api
       - run:
+          name: install-hiptest-publisher
+          command: gem install hiptest-publisher
+      - run:
           name: fetch-cucumberstudio-tests
           command: hiptest-publisher -c my-cs.conf
       - run:
