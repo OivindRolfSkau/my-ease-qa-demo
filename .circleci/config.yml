@@ -2,6 +2,9 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+orbs: 
+  ruby: circleci/ruby@1.8.0
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -24,12 +27,8 @@ jobs:
           name: install-suitest-api
           command: yarn add suitest-js-api
       - run:
-          name: Install publisher and dependencies
-          command: |
-            make install_prerequisites
-            apt-get update
-            apt-get install ruby ruby-dev
-            gem install hiptest-publisher
+          name: install-publisher
+          command: gem install hiptest-publisher
       - save_cache:
           key: dependency-cache-{{ checksum "package.json"}}
           paths:
