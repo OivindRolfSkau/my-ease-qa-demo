@@ -20,16 +20,20 @@ jobs:
       - run:
           name: install-npm-wee
           command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json"}}
-          paths:
-            - ./node_modules
       - run:
           name: install-suitest-api
           command: yarn add suitest-js-api
       - run:
-          name: install-hiptest-publisher
-          command: gem install hiptest-publisher
+          name: Install publisher and dependencies
+          command: |
+            make install_prerequisites
+            apt-get update
+            apt-get install ruby ruby-dev
+            gem install hiptest-publisher
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json"}}
+          paths:
+            - ./node_modules
       - run:
           name: fetch-cucumberstudio-tests
           command: hiptest-publisher -c my-cs.conf
