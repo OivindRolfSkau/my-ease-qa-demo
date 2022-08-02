@@ -19,6 +19,6 @@
     "cucumber": "^6.0.5",
     "cucumber-html-reporter": "^5.5.0",
     "cucumber-junit-formatter": "^0.2.2",
-    "suitest-js-api": "^3.0.2"
+    "suitest-js-api": "^3.4.3"
   }
 }

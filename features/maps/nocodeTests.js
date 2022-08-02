@@ -1,5 +1,5 @@
 const nocodeTests = {
-	'Home page opened': '<test id>',
+	'Home page opened': 'fabc62f1-e75d-4ced-93c8-eea4c9c73805',
 };
 
 module.exports = testName => {
