@@ -2,8 +2,6 @@
 .vscode
 .DS_Store
 node_modules
-my-cs.conf
-.suitestrc
 
 # reporting
 report
