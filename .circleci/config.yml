@@ -20,29 +20,24 @@ jobs:
           name: Install npm
           command: npm install
       - run:
+          name: Install CucumberStudio Publisher
+          command: gem install hiptest-publisher
+      - run:
           name: Install Suitest API
           command: yarn add suitest-js-api
-      - run:
-          name: Install CucumberStudio publisher
-          command: gem install hiptest-publisher
       - save_cache:
           key: dependency-cache-{{ checksum "package.json"}}
           paths:
             - ./node_modules
       - run:
-          name: Fetch manual tests
+          name: Fetch no-code tests, generate typescript
           command: hiptest-publisher -c my-cs.conf
       - run:
-          name: Run tests 
+          name: Execute tests 
           command: npm run start
       - run:
           name: View test results 
           command: npm run report:html
-      #- store_artifacts:
-      #    path: test-results.xml
+      #- run:
+      #    name: Export results to CucumberStudio
       #    prefix: tests
-      #- store_artifacts:
-      #    path: coverage
-      #    prefix: coverage
-      #- store_test_results:
-      #    path: report/cucumber_report.html

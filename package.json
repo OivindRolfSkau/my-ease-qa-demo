@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "suitest run cucumber-js --tags \\\"@e2e\\\" -f json:report/cucumber_report.json -f summary",
+    "start": "suitest run cucumber-js -f json:report/cucumber_report.json -f summary",
     "start:junit": "suitest run cucumber-js --tags \\\"@e2e\\\" -f node_modules/cucumber-junit-formatter:report/cucumber_report.xml -f summary",
     "start:home": "suitest run cucumber-js --tags \\\"@e2e and @home\\\" -f json:report/cucumber_report.json -f summary",
     "start:video": "suitest run cucumber-js --tags \\\"@e2e and @video\\\" -f json:report/cucumber_report.json -f summary",
