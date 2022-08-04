@@ -14,36 +14,35 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      - run: node --version
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json"}}
       - run:
-          name: install-npm-wee
+          name: Install npm
           command: npm install
       - run:
-          name: install-suitest-api
+          name: Install Suitest API
           command: yarn add suitest-js-api
       - run:
-          name: install-publisher
+          name: Install CucumberStudio publisher
           command: gem install hiptest-publisher
       - save_cache:
           key: dependency-cache-{{ checksum "package.json"}}
           paths:
             - ./node_modules
       - run:
-          name: fetch-cucumberstudio-tests
+          name: Fetch manual tests
           command: hiptest-publisher -c my-cs.conf
       - run:
-          name: run-tests 
+          name: Run tests 
           command: npm run start
       - run:
-          name: view_report 
+          name: View test results 
           command: npm run report:html
-      - store_artifacts:
-          path: test-results.xml
-          prefix: tests
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
-      - store_test_results:
-          path: report/cucumber_report.html
+      #- store_artifacts:
+      #    path: test-results.xml
+      #    prefix: tests
+      #- store_artifacts:
+      #    path: coverage
+      #    prefix: coverage
+      #- store_test_results:
+      #    path: report/cucumber_report.html
